@@ -3,12 +3,7 @@
     <div class="row">
       <div class="col">
         <p class="h3 text-primary fw-bold">Edit Contact</p>
-        <p class="fst-italic">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus
-          id eaque hic totam iure quos labore, vero distinctio inventore
-          obcaecati praesentium facilis natus quisquam! Consequuntur neque
-          voluptas tenetur illo assumenda!
-        </p>
+        <p class="fst-italic">Don't forget to save changes.</p>
       </div>
     </div>
   </div>
@@ -85,7 +80,9 @@
           </div>
           <div class="mb-2">
             <button class="btn btn-primary">Update</button> &nbsp;
-            <router-link to="/contacts" type="button" class="btn btn-danger">Cancel</router-link>
+            <router-link to="/contacts" type="button" class="btn btn-danger"
+              >Cancel</router-link
+            >
           </div>
         </form>
       </div>
@@ -97,10 +94,10 @@
 </template>
 
 <script>
-import { contactService } from "@/services/contactService";
-import validator from "validator";
+import { contactService } from '@/services/contactService';
+import validator from 'validator';
 export default {
-  props: ["contactId"],
+  props: ['contactId'],
   data() {
     return {
       selectedContact: [],
@@ -114,13 +111,13 @@ export default {
   methods: {
     async loadSelectedContact() {
       this.isLoading = true;
-      this.errorMsg = null
+      this.errorMsg = null;
       try {
         const response = await contactService.getContact(this.contactId);
         this.selectedContact = response;
-        this.isLoading = false
+        this.isLoading = false;
       } catch (err) {
-        this.errorMsg = err
+        this.errorMsg = err;
       }
     },
     async updateContact() {
@@ -129,14 +126,16 @@ export default {
         !this.selectedContact.mobile ||
         !this.selectedContact.email
       ) {
-        return alert("Name, mobile and email fields are required!");
+        return alert('Name, mobile and email fields are required!');
       }
       if (!validator.isEmail(this.selectedContact.email)) {
-        return alert("Please provide a valid email address!");
+        return alert('Please provide a valid email address!');
       }
 
       //format birthday so it can be stored in firebase correctly
-      let formattedBday = (new Date (this.selectedContact.birthday).toLocaleDateString())
+      let formattedBday = new Date(
+        this.selectedContact.birthday
+      ).toLocaleDateString();
 
       const formData = {
         name: this.selectedContact.name,
@@ -154,7 +153,7 @@ export default {
           formData
         );
         alert(response);
-        this.$router.push("/contacts");
+        this.$router.push('/contacts');
       } catch (err) {
         alert(err);
       }
@@ -163,5 +162,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
