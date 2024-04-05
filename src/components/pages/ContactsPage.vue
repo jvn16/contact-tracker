@@ -8,7 +8,13 @@
             <i class="fa fa-plus-circle"></i> Add</router-link
           >
         </p>
-        <p class="fst-italic">Contact Details:</p>
+        <p class="fst-italic">
+          This is where you can see all your added contacts. A notification will
+          pop out on this page when one of your contact has his/her birthday.
+          You can search your contacts using the search bar below. You can
+          search for their name, nickname, email, mobile, group or even their
+          birthday!
+        </p>
         <div class="row">
           <div class="col-md-8">
             <div class="row">
