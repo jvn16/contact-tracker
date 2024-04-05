@@ -8,27 +8,22 @@
             <i class="fa fa-plus-circle"></i> Add</router-link
           >
         </p>
-        <p class="fst-italic">
-          This is where you can see all your added contacts. A notification will
-          pop out on this page when one of your contact has his/her birthday.
-          You can search your contacts using the search bar below. You can search for their name, nickname, email, mobile, group or even their birthday!
-        </p>
-          <div class="row">
-            <div class="col-md-8">
-              <div class="row">
-                <div class="col">
-                  <input
-                    type="text"
-                    class="form-control"
-                    v-model="txtSearch"
-                    placeholder="Search contact"
-                  />
-                </div>
-                <div class="col">
-                </div>
+        <p class="fst-italic">Contact Details:</p>
+        <div class="row">
+          <div class="col-md-8">
+            <div class="row">
+              <div class="col">
+                <input
+                  type="text"
+                  class="form-control"
+                  v-model="txtSearch"
+                  placeholder="Search contact"
+                />
               </div>
+              <div class="col"></div>
             </div>
           </div>
+        </div>
       </div>
     </div>
   </div>
@@ -85,13 +80,7 @@
                 </ul>
               </div>
               <div
-                class="
-                  col-sm-1
-                  d-flex
-                  flex-column
-                  justify-content-center
-                  align-items-center
-                "
+                class="col-sm-1 d-flex flex-column justify-content-center align-items-center"
               >
                 <router-link
                   :to="`/contacts/view/${contact.id}`"
@@ -125,8 +114,8 @@
 </template>
 
 <script>
-import { contactService } from "@/services/contactService";
-import NoFoundContact from "../ui/NoFoundContact.vue";
+import { contactService } from '@/services/contactService';
+import NoFoundContact from '../ui/NoFoundContact.vue';
 export default {
   components: {
     NoFoundContact,
@@ -136,7 +125,7 @@ export default {
       listOfContacts: [],
       isLoading: false,
       errorMsg: null,
-      txtSearch: "",
+      txtSearch: '',
     };
   },
   created() {
@@ -144,8 +133,8 @@ export default {
   },
   watch: {
     txtSearch() {
-      this.searchContact()
-    }
+      this.searchContact();
+    },
   },
   methods: {
     async loadAllContacts() {
@@ -168,8 +157,13 @@ export default {
         (contact) =>
           contact.name.toLowerCase().includes(this.txtSearch.toLowerCase()) ||
           contact.mobile.toString().includes(this.txtSearch) ||
-          contact.nickname.toLowerCase().includes(this.txtSearch.toLowerCase()) ||
-          contact.email.toLowerCase().toString().includes(this.txtSearch.toLowerCase()) ||
+          contact.nickname
+            .toLowerCase()
+            .includes(this.txtSearch.toLowerCase()) ||
+          contact.email
+            .toLowerCase()
+            .toString()
+            .includes(this.txtSearch.toLowerCase()) ||
           contact.birthday.includes(this.txtSearch) ||
           contact.group.toLowerCase().includes(this.txtSearch.toLowerCase())
       );
@@ -177,7 +171,7 @@ export default {
     },
     async deleteContact(id) {
       this.errorMsg = null;
-      if (confirm("Are you sure you want to delete this contact?")) {
+      if (confirm('Are you sure you want to delete this contact?')) {
         try {
           const status = await contactService.deleteContact(id);
           alert(status);
