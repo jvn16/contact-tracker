@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col">
         <p class="h3 text-primary fw-bold">Edit Contact</p>
-        <p class="fst-italic">Don't forget to save changes made..</p>
+        <p class="fst-italic">Don't forget to save changes made.</p>
       </div>
     </div>
   </div>
