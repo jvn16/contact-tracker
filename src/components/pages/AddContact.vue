@@ -4,7 +4,7 @@
       <div class="col">
         <p class="h3 text-primary fw-bold">Add Contact</p>
         <p class="fst-italic">
-          Please provide the needed information to add a new contact.
+          Please provide the needed information to add a new contact..
         </p>
       </div>
     </div>
